@@ -1158,13 +1158,32 @@ body.premium-dark-theme .section-title h2 {
   right: -400px;
   width: 400px;
   max-width: 100%;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   background: var(--white);
   box-shadow: -5px 0 15px rgba(0,0,0,0.1);
   z-index: 10000;
   transition: right 0.4s ease;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 576px) {
+  .cart-panel {
+    min-height: auto;
+    height: max-content;
+    max-height: 85vh;
+    top: auto;
+    bottom: -100%;
+    right: 0;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    transition: bottom 0.4s ease;
+  }
+  .cart-panel.open {
+    bottom: 0;
+    right: 0;
+  }
 }
 
 body.premium-dark-theme .cart-panel {
