@@ -1179,8 +1179,8 @@ body.premium-dark-theme .section-title h2 {
 
 @media (max-width: 576px) {
   .cart-panel {
-    min-height: auto;
-    height: max-content;
+    min-height: 0;
+    height: auto;
     max-height: 85vh;
     top: auto;
     bottom: -100%;
@@ -1192,6 +1192,10 @@ body.premium-dark-theme .section-title h2 {
   .cart-panel.open {
     bottom: 0;
     right: 0;
+  }
+  .cart-items {
+    flex: 0 1 auto;
+    max-height: 50vh;
   }
 }
 
