@@ -228,6 +228,11 @@ if (contactForm) {
             urlEncodedData.append('Phone', document.getElementById('phone').value);
             urlEncodedData.append('Subject', document.getElementById('subject').value);
             
+            const deliveryDateInput = document.getElementById('deliveryDate');
+            if (deliveryDateInput && deliveryDateInput.value) {
+                urlEncodedData.append('Delivery Date', deliveryDateInput.value);
+            }
+            
             const pNameInput = document.getElementById('productName');
             const pQtyInput = document.getElementById('productQuantity');
             const pPriceInput = document.getElementById('productTotalPrice');
@@ -240,7 +245,7 @@ if (contactForm) {
             
             urlEncodedData.append('Message', document.getElementById('message').value);
             
-            fetch('https://script.google.com/macros/s/AKfycbx9ntjHdYXdhyS17j2MeV8KEKQ0E7LUWjS4vA2vGSkIuykuPKewhelGT4XrPj7OTSKo/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbysSJf2zGxEo9lAVE2MJfX6J_5TUt9-7-XG9Co5p5YoLbZQkPRpMqv1Hddur88A62hTkw/exec', {
                 method: 'POST',
                 mode: 'no-cors', // Prevents waiting for server redirects
                 headers: {
@@ -251,6 +256,20 @@ if (contactForm) {
 
             // Optimistic UI Update: Make it feel lightning fast
             setTimeout(() => {
+                // Generate WhatsApp Message
+                const customerName = document.getElementById('name').value;
+                const deliveryDate = document.getElementById('deliveryDate') ? document.getElementById('deliveryDate').value : 'Not specified';
+                const customerMsg = document.getElementById('message').value;
+                let waMessage = `*New Request from ${customerName}*\n\n`;
+                waMessage += `*Subject:* ${document.getElementById('subject').value}\n`;
+                waMessage += `*Expected Date:* ${deliveryDate}\n\n`;
+                waMessage += `*Details/Order:*\n${customerMsg}`;
+                
+                // Open WhatsApp in a new tab
+                const whatsappNumber = "917821098466"; // Owner's WhatsApp Number
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(waMessage)}`;
+                window.open(whatsappURL, '_blank');
+
                 // Restore button
                 submitBtn.innerText = originalText;
                 submitBtn.disabled = false;
@@ -507,7 +526,27 @@ window.checkoutCart = function() {
         alert("Your cart is empty!");
         return;
     }
-    window.location.href = "contact.html?checkout=true";
+    
+    let orderText = "*NEW ORDER*\n\n";
+    let finalTotal = 0;
+
+    cart.forEach(item => {
+        let itemTotal = item.price * item.qty;
+        if (item.qty >= 35) {
+            itemTotal = itemTotal * 0.90; // Apply 10% discount
+        }
+        finalTotal += itemTotal;
+        
+        orderText += `${item.qty}x ${item.name} - ₹${itemTotal.toFixed(2)}\n`;
+    });
+    
+    orderText += `\n*TOTAL AMOUNT: ₹${finalTotal.toFixed(2)}*\n\n`;
+    orderText += "Hello, I would like to place this order.";
+    
+    const whatsappNumber = "917821098466";
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderText)}`;
+    
+    window.open(whatsappURL, '_blank');
 };
 
 // Initialize Cart UI and Add to Cart buttons
