@@ -26,6 +26,7 @@ body {
   line-height: 1.6;
   background-color: var(--bg-light);
   overflow-x: hidden;
+  padding-top: 80px; /* Compensate for fixed header */
 }
 
 /* Preloaders */
@@ -157,8 +158,10 @@ ul {
 header {
   background: var(--white);
   box-shadow: var(--shadow);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
 }
 
@@ -1410,4 +1413,127 @@ body.premium-dark-theme .success-popup h3 {
 
 body.premium-dark-theme .success-popup p {
   color: #d1d5db;
+}
+
+
+
+
+
+
+  h2, .section-title h2 {
+    font-size: 1.5rem !important;
+  }
+  h3 {
+    font-size: 1.2rem !important;
+  }
+  p, li, .btn {
+    font-size: 0.95rem !important;
+  }
+  .dynamic-product-card h2 {
+    font-size: 1.4rem !important;
+  }
+}
+
+/* Ensure headers without inline styles have standard sizes */
+.page-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+.page-header p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* --- MODERN E-COMMERCE MOBILE OVERRIDES --- */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .section-padding { padding: 40px 0 !important; }
+  .page-header { padding: 50px 0 !important; }
+}
+
+@media (max-width: 576px) {
+  /* Force 2-column grid for products on mobile */
+  #productGrid, #featuredProductGrid, #suggestionsGrid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 10px !important;
+  }
+  
+  /* Force 1-column for non-product grids */
+  .testimonials .grid-3, 
+  .about-grid, 
+  .contact-grid,
+  .footer-grid {
+      grid-template-columns: 1fr !important;
+  }
+
+  /* Card styling for modern mobile look */
+  #productGrid .card, #featuredProductGrid .card, #suggestionsGrid .card {
+      border-radius: 8px !important;
+  }
+  #productGrid .card-img, #featuredProductGrid .card-img, #suggestionsGrid .card-img {
+      height: 140px !important;
+  }
+  #productGrid .card-body, #featuredProductGrid .card-body, #suggestionsGrid .card-body {
+      padding: 10px !important;
+  }
+  #productGrid .card-body h3, #featuredProductGrid .card-body h3, #suggestionsGrid .card-body h3 {
+      font-size: 0.9rem !important;
+      line-height: 1.2 !important;
+      margin-bottom: 5px !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }
+  #productGrid .card-body p, #featuredProductGrid .card-body p, #suggestionsGrid .card-body p {
+      display: none !important; /* Hide description on mobile for cleaner look */
+  }
+  #productGrid .card-body .price, #featuredProductGrid .card-body .price, #suggestionsGrid .card-body .price {
+      font-size: 0.85rem !important;
+      margin-bottom: 8px !important;
+      display: block;
+  }
+  #productGrid .card-body .btn, #featuredProductGrid .card-body .btn, #suggestionsGrid .card-body .btn {
+      padding: 6px 8px !important;
+      font-size: 0.75rem !important;
+      width: 100% !important;
+  }
+  
+  /* Product Detail Page */
+  .product-image-container img {
+      max-height: 250px !important;
+  }
+  .product-title {
+      font-size: 1.5rem !important;
+  }
+  .product-price {
+      font-size: 1.3rem !important;
+  }
+  .add-to-cart-wrapper .btn {
+      font-size: 1rem !important;
+      padding: 12px 20px !important;
+      width: 100% !important;
+      justify-content: center;
+  }
+  
+  /* General Typography Scaling */
+  h1, .hero h1, #product-page-header h1, .page-header h1 {
+      font-size: 1.8rem !important;
+  }
+  h2, .section-title h2 {
+      font-size: 1.5rem !important;
+      margin-bottom: 5px !important;
+  }
+  h3 {
+      font-size: 1.2rem !important;
+  }
+  p, li, .btn {
+      font-size: 0.95rem !important;
+  }
+  .header-text-side, .header-image-side {
+      min-width: 100%;
+  }
 }

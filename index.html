@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Shlok Laundry Solutions | Home</title>
     <meta name="description" content="Professional Laundry Products & Machine Services. Complete laundry solutions for commercial and home businesses.">
     <!-- FontAwesome -->
@@ -101,7 +101,7 @@
                 <h2>Featured Products</h2>
                 <p>Discover our top-rated laundry chemicals and accessories designed for maximum efficiency.</p>
             </div>
-            <div class="grid-3">
+            <div class="grid-3" id="featuredProductGrid">
                 <!-- Product 1 -->
                 <div class="card animate-on-scroll">
                     <div class="card-img">
@@ -110,7 +110,7 @@
                     <div class="card-body">
                         <h3>Detergent Liquid</h3>
                         <p>High-efficiency concentrated liquid detergent for commercial machines.</p>
-                        <a href="products.html" class="btn btn-outline">View Details</a>
+                        <a href="product-detail.html?id=detergent-liquid" class="btn btn-outline">View Details</a>
                     </div>
                 </div>
                 <!-- Product 2 -->
@@ -121,7 +121,7 @@
                     <div class="card-body">
                         <h3>Premium Detergent Powder</h3>
                         <p>Powerful detergent powder for deep cleaning, tough stain removal, and long-lasting freshness.</p>
-                        <a href="products.html" class="btn btn-outline">View Details</a>
+                        <a href="product-detail.html?id=premium-detergent-powder" class="btn btn-outline">View Details</a>
                     </div>
                 </div>
                 <!-- Product 3 -->
@@ -132,7 +132,7 @@
                     <div class="card-body">
                         <h3>Rust Remover Liquid</h3>
                         <p>Powerful formula to lift oil, grease, and tough stains easily.</p>
-                        <a href="products.html" class="btn btn-outline">View Details</a>
+                        <a href="product-detail.html?id=rust-remover-liquid" class="btn btn-outline">View Details</a>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                     </div>
                     <p>"Shlok Laundry Solutions has completely transformed our laundry operations. Their detergents are top-notch and their service is incredible."</p>
                     <h4 style="margin-top: 15px;">- Dheeraj Jadhav</h4>
-                    <span style="font-size: 0.9rem; color: var(--text-light);">Owner of BubbleIQ Laundry</span>
+                    <span style="color: var(--text-light);">Owner of BubbleIQ Laundry</span>
                 </div>
                 <div class="testimonial-card animate-on-scroll">
                     <div class="stars">
@@ -200,7 +200,7 @@
                     </div>
                     <p>"We rely on them for all our machine maintenance. Their technicians are always on time and fix issues swiftly. Highly recommended!"</p>
                     <h4 style="margin-top: 15px;">- </h4>
-                    <span style="font-size: 0.9rem; color: var(--text-light);">Commercial Laundromat Owner</span>
+                    <span style="color: var(--text-light);">Commercial Laundromat Owner</span>
                 </div>
                 <div class="testimonial-card animate-on-scroll">
                     <div class="stars">
@@ -208,7 +208,7 @@
                     </div>
                     <p>"Great quality chemicals at very affordable prices. The delivery is always fast and hassle-free."</p>
                     <h4 style="margin-top: 15px;">- Amit Patel</h4>
-                    <span style="font-size: 0.9rem; color: var(--text-light);">Hospital Administrator</span>
+                    <span style="color: var(--text-light);">Hospital Administrator</span>
                 </div>
             </div>
         </div>
@@ -217,8 +217,8 @@
     <!-- Call to Action -->
     <section class="section-padding" style="background: var(--primary-color); color: var(--white); text-align: center;">
         <div class="container animate-on-scroll">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Need Laundry Solutions?</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Get in touch with us today for product inquiries or to book a service appointment.</p>
+            <h2 style="margin-bottom: 20px;">Need Laundry Solutions?</h2>
+            <p style="margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">Get in touch with us today for product inquiries or to book a service appointment.</p>
             <a href="contact.html" class="btn" style="background: var(--white); color: var(--primary-color);">Contact Us Now</a>
         </div>
     </section>
@@ -287,11 +287,14 @@
             <!-- Items will be injected here -->
         </div>
         <div class="cart-footer">
+            <div style="margin-bottom: 15px;">
+                <textarea id="deliveryAddress" rows="2" placeholder="Enter your full delivery address" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
+            </div>
             <div class="cart-total-row">
                 <span>Total:</span>
                 <span id="cartTotal">₹0.00</span>
             </div>
-            <button class="btn" style="width: 100%; background-color: #25D366; color: white; border: none; font-size: 1rem;" onclick="checkoutCart()"><i class="fa-brands fa-whatsapp" style="font-size: 1.2rem; margin-right: 8px; vertical-align: middle;"></i>Order via WhatsApp</button>
+            <button class="btn" style="width: 100%; background-color: #25D366; color: white; border: none; " onclick="checkoutCart()"><i class="fa-brands fa-whatsapp" style="margin-right: 8px; vertical-align: middle;"></i>Order via WhatsApp</button>
         </div>
     </div>
 </body>

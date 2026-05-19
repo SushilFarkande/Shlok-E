@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Contact Us | Shlok Laundry Solutions</title>
     <meta name="description" content="Get in touch with Shlok Laundry Solutions for product inquiries and service bookings.">
     <!-- FontAwesome -->
@@ -42,8 +42,8 @@
     <!-- Page Header -->
     <section class="page-header" style="background-image: linear-gradient(rgba(13,110,253,0.8), rgba(13,110,253,0.8)), url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&q=80');">
         <div class="container animate-on-scroll">
-            <h1 style="font-size: 3rem; margin-bottom: 10px;">Contact Us</h1>
-            <p style="font-size: 1.2rem;">We are here to help you with all your laundry needs.</p>
+            <h1 style="margin-bottom: 10px;">Contact Us</h1>
+            <p>We are here to help you with all your laundry needs.</p>
         </div>
     </section>
 
@@ -106,6 +106,9 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <textarea id="address" name="address" rows="2" placeholder="Your Delivery / Service Address"></textarea>
+                        </div>
+                        <div class="form-group">
                             <select id="subject" name="subject">
                                 <option value="">Select a Subject / Service</option>
                                 <option value="product_inquiry">Product Inquiry</option>
@@ -115,7 +118,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="deliveryDate" style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 5px; display: block;">Expected Delivery/Service Date</label>
+                            <label for="deliveryDate" style="color: var(--text-light); margin-bottom: 5px; display: block;">Expected Delivery/Service Date</label>
                             <input type="date" id="deliveryDate" name="deliveryDate">
                         </div>
                         <div class="form-group">
@@ -229,11 +232,14 @@
             <!-- Items will be injected here -->
         </div>
         <div class="cart-footer">
+            <div style="margin-bottom: 15px;">
+                <textarea id="deliveryAddress" rows="2" placeholder="Enter your full delivery address" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
+            </div>
             <div class="cart-total-row">
                 <span>Total:</span>
                 <span id="cartTotal">₹0.00</span>
             </div>
-            <button class="btn" style="width: 100%; background-color: #25D366; color: white; border: none; font-size: 1rem;" onclick="checkoutCart()"><i class="fa-brands fa-whatsapp" style="font-size: 1.2rem; margin-right: 8px; vertical-align: middle;"></i>Order via WhatsApp</button>
+            <button class="btn" style="width: 100%; background-color: #25D366; color: white; border: none; " onclick="checkoutCart()"><i class="fa-brands fa-whatsapp" style="margin-right: 8px; vertical-align: middle;"></i>Order via WhatsApp</button>
         </div>
     </div>
 </body>

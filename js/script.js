@@ -527,7 +527,18 @@ window.checkoutCart = function() {
         return;
     }
     
-    let orderText = "*NEW ORDER*\n\n";
+    const addressInput = document.getElementById('deliveryAddress');
+    const address = addressInput ? addressInput.value.trim() : "";
+    
+    if (!address) {
+        alert("Please enter your delivery address before placing the order.");
+        if (addressInput) addressInput.focus();
+        return;
+    }
+
+    let orderText = "*NEW ORDER*
+
+";
     let finalTotal = 0;
 
     cart.forEach(item => {
@@ -536,16 +547,24 @@ window.checkoutCart = function() {
             itemTotal = itemTotal * 0.90; // Apply 10% discount
         }
         finalTotal += itemTotal;
-        
-        orderText += `${item.qty}x ${item.name} - ₹${itemTotal.toFixed(2)}\n`;
+
+        orderText += `${item.qty}x ${item.name} - ₹${itemTotal.toFixed(2)}
+`;
     });
-    
-    orderText += `\n*TOTAL AMOUNT: ₹${finalTotal.toFixed(2)}*\n\n`;
+
+    orderText += `
+*TOTAL AMOUNT: ₹${finalTotal.toFixed(2)}*
+
+`;
+    orderText += `*Delivery Address:*
+${address}
+
+`;
     orderText += "Hello, I would like to place this order.";
-    
+
     const whatsappNumber = "917821098466";
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderText)}`;
-    
+
     window.open(whatsappURL, '_blank');
 };
 

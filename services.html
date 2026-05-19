@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Services | Shlok Laundry Solutions</title>
     <meta name="description" content="Professional washing machine repair, maintenance, and installation services.">
     <!-- FontAwesome -->
@@ -42,8 +42,8 @@
     <!-- Page Header -->
     <section class="page-header" style="background-image: linear-gradient(rgba(13,110,253,0.8), rgba(13,110,253,0.8)), url('https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?auto=format&fit=crop&q=80');">
         <div class="container animate-on-scroll">
-            <h1 style="font-size: 3rem; margin-bottom: 10px;">Our Services</h1>
-            <p style="font-size: 1.2rem;">Expert repair, maintenance, and installation for all laundry equipment.</p>
+            <h1 style="margin-bottom: 10px;">Our Services</h1>
+            <p>Expert repair, maintenance, and installation for all laundry equipment.</p>
         </div>
     </section>
 
@@ -242,11 +242,14 @@
             <!-- Items will be injected here -->
         </div>
         <div class="cart-footer">
+            <div style="margin-bottom: 15px;">
+                <textarea id="deliveryAddress" rows="2" placeholder="Enter your full delivery address" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid var(--border-color); font-family: inherit; font-size: 0.9rem; resize: none;"></textarea>
+            </div>
             <div class="cart-total-row">
                 <span>Total:</span>
                 <span id="cartTotal">₹0.00</span>
             </div>
-            <button class="btn" style="width: 100%; background-color: #25D366; color: white; border: none; font-size: 1rem;" onclick="checkoutCart()"><i class="fa-brands fa-whatsapp" style="font-size: 1.2rem; margin-right: 8px; vertical-align: middle;"></i>Order via WhatsApp</button>
+            <button class="btn" style="width: 100%; background-color: #25D366; color: white; border: none; " onclick="checkoutCart()"><i class="fa-brands fa-whatsapp" style="margin-right: 8px; vertical-align: middle;"></i>Order via WhatsApp</button>
         </div>
     </div>
 </body>
