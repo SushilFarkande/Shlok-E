@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const basePath = 'E:/Shlok Enterprises';
+const basePath = 'E:/Shlok Enterprises and Manufacturers';
 const files = ['index.html', 'products.html', 'services.html', 'contact.html'];
 
 const cartHTML = `

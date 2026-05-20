@@ -558,6 +558,9 @@ window.checkoutCart = function() {
     history.unshift(orderRecord);
     localStorage.setItem('shlok_order_history', JSON.stringify(history));
 
+    // Save address for future orders
+    localStorage.setItem('shlok_saved_address', address);
+
     let orderText = `*NEW ORDER*\n\n`;
     let finalTotal = 0;
 
@@ -597,6 +600,13 @@ ${address}
 // Initialize Cart UI and Add to Cart buttons
 window.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
+
+    // Pre-fill address
+    const savedAddress = localStorage.getItem('shlok_saved_address');
+    const addressInput = document.getElementById('deliveryAddress');
+    if (savedAddress && addressInput) {
+        addressInput.value = savedAddress;
+    }
 
     // Toggle Cart Panel
     const cartIcon = document.getElementById('cartIcon');

@@ -1,5 +1,5 @@
 /**
- * SHLOK ENTERPRISES - OFFERS CONFIGURATION
+ * Shlok Enterprises and Manufacturers - OFFERS CONFIGURATION
  * 
  * Use this file to add or remove discounts on your products and services.
  * 

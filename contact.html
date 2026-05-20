@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Contact Us | Shlok Laundry Solutions</title>
-    <meta name="description" content="Get in touch with Shlok Laundry Solutions for product inquiries and service bookings.">
+    <title>Contact Us | Shlok Enterprises and Manufacturers</title>
+    <meta name="description" content="Get in touch with Shlok Enterprises and Manufacturers for product inquiries and service bookings.">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
@@ -20,7 +20,7 @@
     <header>
         <div class="container navbar">
             <a href="index.html" class="logo">
-                <img src="images/home/logo.png" alt="Shlok Enterprises Logo" style="height: 50px;">
+                <img src="images/home/logo.png" alt="Shlok Enterprises and Manufacturers Logo" style="height: 50px;">
                 <span class="logo-title">Shlok <span class="highlight">Enterprises</span></span>
             </a>
             <button class="mobile-menu-btn">
@@ -62,7 +62,7 @@
                         <i class="fa-solid fa-location-dot"></i>
                         <div>
                             <h3>Office Address</h3>
-                            <p style="color: var(--text-light);">Shlok Enterprises Gat no 353, Pirangut, Mulshi, pune 412115</p>
+                            <p style="color: var(--text-light);">Shlok Enterprises and Manufacturers Gat no 353, Pirangut, Mulshi, pune 412115</p>
                         </div>
                     </div>
                     
@@ -136,9 +136,15 @@
             </div>
             
             <!-- Map Placeholder -->
-            <div class="map-container animate-on-scroll">
+            <div class="map-container animate-on-scroll" style="position: relative;">
                 <!-- An actual map would be embedded here via iframe -->
                 <iframe src="https://maps.google.com/maps?q=18.5082158,73.6920693&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Google Map"></iframe>
+                
+                <!-- QR Code Overlay -->
+                <div style="position: absolute; bottom: 20px; right: 20px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center; z-index: 10;">
+                    <p style="color: #333; font-size: 0.7rem; font-weight: bold; margin-bottom: 5px;">REVIEW US</p>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://g.page/r/CV8XfNQQwtOPEAE/review" alt="Review QR Code" style="width: 80px; height: 80px; display: block;">
+                </div>
             </div>
 
         </div>
@@ -162,7 +168,6 @@
                     <p style="color: #bbb; margin-bottom: 20px;">Your trusted partner for all laundry products, chemicals, and washing machine repair services.</p>
                     <div class="social-links">
                         <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://www.instagram.com/_sushil_0807?igsh=Ym15aHZ6Z2V1dHZs" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                         <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
@@ -180,23 +185,24 @@
                 <div class="footer-col">
                     <h3>Contact Info</h3>
                     <ul>
-                        <li><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Shlok Enterprises Gat no 353, Pirangut, Mulshi, pune 412115</li>
+                        <li><i class="fa-solid fa-location-dot" style="margin-right: 10px;"></i> Shlok Enterprises and Manufacturers Gat no 353, Pirangut, Mulshi, pune 412115</li>
                         <li><i class="fa-solid fa-phone" style="margin-right: 10px;"></i> +91 7821098466, +91 7387585242</li>
                         <li><i class="fa-solid fa-envelope" style="margin-right: 10px;"></i> shlokmanufacturers@gmail.com</li>
                         <li><i class="fa-solid fa-clock" style="margin-right: 10px;"></i> 24/7</li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>Newsletter</h3>
-                    <p style="color: #bbb; margin-bottom: 15px;">Subscribe to get the latest updates and offers.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
-                        <input type="email" placeholder="Your Email" required>
-                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
-                    </form>
+                    <h3>Review Us</h3>
+                    <p style="color: #bbb; margin-bottom: 15px;">Scan to review us on Google Maps</p>
+                    <div style="background: white; padding: 10px; display: inline-block; border-radius: 8px;">
+                        <a href="https://g.page/r/CV8XfNQQwtOPEAE/review" target="_blank">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://g.page/r/CV8XfNQQwtOPEAE/review" alt="Review QR Code" style="width: 120px; height: 120px; display: block;">
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Shlok Laundry Solutions. All Rights Reserved.</p>
+                <p>&copy; 2026 Shlok Enterprises and Manufacturers. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
