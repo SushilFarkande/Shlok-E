@@ -14,7 +14,7 @@
 
 const activeOffers = {
     // --- PRODUCT OFFERS ---
-   // products: {
+    products: {
         "Detergent Liquid": {
             discountText: "20% OFF",
             oldPrice: "₹199.00 / 1L",
@@ -28,7 +28,7 @@ const activeOffers = {
     },
 
     // --- SERVICE OFFERS ---
-   // services: {
+    services: {
         "Washing Machine Repair": {
             discountText: "Flat ₹500 OFF"
         },

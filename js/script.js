@@ -541,9 +541,7 @@ window.checkoutCart = function() {
         return;
     }
 
-    let orderText = "*NEW ORDER*
-
-";
+    let orderText = `*NEW ORDER*\n\n`;
     let finalTotal = 0;
 
     cart.forEach(item => {
