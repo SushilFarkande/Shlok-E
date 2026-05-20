@@ -247,7 +247,7 @@ footer .logo-title .highlight {
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80');
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&q=80&w=1200');
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -648,7 +648,7 @@ footer .container {
 
 /* Page Headers */
 .page-header {
-  background: linear-gradient(rgba(13,110,253,0.8), rgba(13,110,253,0.8)), url('https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80') center/cover;
+  background: linear-gradient(rgba(13,110,253,0.8), rgba(13,110,253,0.8)), url('https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80&w=1200') center/cover;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

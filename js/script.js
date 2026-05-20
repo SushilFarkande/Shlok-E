@@ -1,13 +1,18 @@
 // Preloader
-window.addEventListener('load', () => {
+const hidePreloader = () => {
     const preloader = document.getElementById('preloader');
-    if (preloader) {
+    if (preloader && preloader.style.display !== 'none') {
         preloader.style.opacity = '0';
         setTimeout(() => {
             preloader.style.display = 'none';
         }, 500);
     }
-});
+};
+
+window.addEventListener('load', hidePreloader);
+
+// Fallback: Hide preloader after 3 seconds even if 'load' hasn't fired
+setTimeout(hidePreloader, 3000);
 
 // Mobile Menu
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
