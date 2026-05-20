@@ -586,6 +586,12 @@ ${address}
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(orderText)}`;
 
     window.open(whatsappURL, '_blank');
+
+    // Clear cart after checkout
+    window.cart = [];
+    cart = window.cart;
+    saveCart();
+    updateCartUI();
 };
 
 // Initialize Cart UI and Add to Cart buttons
