@@ -422,13 +422,14 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- Shopping Cart Logic ---
-let cart = JSON.parse(localStorage.getItem('shlok_cart')) || [];
+window.cart = JSON.parse(localStorage.getItem('shlok_cart')) || [];
+let cart = window.cart;
 
 function saveCart() {
     localStorage.setItem('shlok_cart', JSON.stringify(cart));
 }
 
-function updateCartUI() {
+window.updateCartUI = function() {
     const badge = document.querySelector('.cart-badge');
     const itemsContainer = document.getElementById('cartItems');
     const totalElement = document.getElementById('cartTotal');
@@ -540,6 +541,22 @@ window.checkoutCart = function() {
         if (addressInput) addressInput.focus();
         return;
     }
+
+    // Save to History
+    const orderRecord = {
+        date: new Date().toLocaleString(),
+        items: JSON.parse(JSON.stringify(cart)),
+        total: cart.reduce((sum, item) => {
+            let price = item.price * item.qty;
+            if (item.qty >= 35) price *= 0.90;
+            return sum + price;
+        }, 0),
+        address: address
+    };
+    
+    let history = JSON.parse(localStorage.getItem('shlok_order_history')) || [];
+    history.unshift(orderRecord);
+    localStorage.setItem('shlok_order_history', JSON.stringify(history));
 
     let orderText = `*NEW ORDER*\n\n`;
     let finalTotal = 0;
