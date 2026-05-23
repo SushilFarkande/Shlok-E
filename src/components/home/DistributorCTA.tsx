@@ -28,7 +28,7 @@ export default function DistributorCTA() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                 <Link
-                  href="/contact"
+                  href="/distributorship"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-navy-blue font-bold rounded-full hover:bg-luxury-gold hover:text-white transition-all duration-300 shadow-lg hover:shadow-luxury-gold/50"
                 >
                   Get Distributor Price

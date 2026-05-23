@@ -37,7 +37,7 @@ export default function ServicesSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="flex overflow-x-auto pb-8 -mx-6 px-6 snap-x snap-mandatory md:grid md:grid-cols-2 md:gap-8 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
           {services.map((service, index) => {
             const Icon = iconMap[service.icon];
             return (
@@ -47,7 +47,7 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group p-8 rounded-3xl border border-gray-100 bg-white hover:bg-navy-blue transition-all duration-500 shadow-sm hover:shadow-2xl"
+                className="min-w-[85vw] md:min-w-0 snap-center mr-6 md:mr-0 group p-8 rounded-3xl border border-gray-100 bg-white hover:bg-navy-blue transition-all duration-500 shadow-sm hover:shadow-2xl"
               >
                 <div className="flex items-start gap-6">
                   <div className="p-4 rounded-2xl bg-soft-blue/50 text-royal-blue group-hover:bg-white/10 group-hover:text-luxury-gold transition-colors duration-500">

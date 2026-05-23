@@ -29,7 +29,7 @@ export default function FeaturesStrip() {
 
   return (
     <section className="relative -mt-16 z-20 container mx-auto px-6 md:px-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="flex overflow-x-auto pb-6 -mx-6 px-6 snap-x snap-mandatory lg:grid lg:grid-cols-4 lg:gap-6 lg:pb-0 lg:mx-0 lg:px-0 scrollbar-hide">
         {features.map((feature, index) => (
           <motion.div
             key={index}
@@ -37,7 +37,7 @@ export default function FeaturesStrip() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="glass rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300"
+            className="min-w-[75vw] md:min-w-[40vw] lg:min-w-0 snap-center mr-4 lg:mr-0 glass rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300"
           >
             <div className="mb-4 p-4 bg-pearl-white/50 rounded-full inline-block">
               {feature.icon}

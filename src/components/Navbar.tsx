@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Droplets } from "lucide-react";
+import { Menu, X, Droplets, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/lib/CartContext";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { setIsCartOpen, totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,21 +55,48 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+          
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 text-navy-blue hover:text-royal-blue transition-colors"
+          >
+            <ShoppingBag size={24} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-royal-blue text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                {totalItems}
+              </span>
+            )}
+          </button>
+
           <Link
-            href="/contact"
+            href="/distributorship"
             className="ml-4 px-6 py-2.5 bg-navy-blue text-white text-sm font-medium rounded-full hover:bg-royal-blue shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
           >
             Get Distributor Price
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-navy-blue"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="flex items-center gap-4 md:hidden">
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="relative p-2 text-navy-blue"
+          >
+            <ShoppingBag size={24} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-royal-blue text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                {totalItems}
+              </span>
+            )}
+          </button>
+          
+          <button
+            className="text-navy-blue"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -90,7 +119,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/distributorship"
               onClick={() => setIsMobileMenuOpen(false)}
               className="px-8 py-3 bg-navy-blue text-white text-md font-medium rounded-full hover:bg-royal-blue transition-all duration-300"
             >

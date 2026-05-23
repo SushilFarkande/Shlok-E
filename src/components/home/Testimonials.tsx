@@ -37,7 +37,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex overflow-x-auto pb-8 -mx-6 px-6 snap-x snap-mandatory md:grid md:grid-cols-3 md:gap-8 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
@@ -45,7 +45,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="glass p-8 rounded-3xl"
+              className="min-w-[85vw] md:min-w-0 snap-center mr-6 md:mr-0 glass p-8 rounded-3xl"
             >
               <div className="flex gap-1 mb-6 text-luxury-gold">
                 {[...Array(5)].map((_, i) => (

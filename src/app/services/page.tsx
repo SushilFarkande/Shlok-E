@@ -74,7 +74,7 @@ export default function ServicesPage() {
                 </ul>
 
                 <Link
-                  href="/contact"
+                  href={`/book-service?service=${encodeURIComponent(service.title)}`}
                   className="inline-block w-full text-center px-6 py-3 bg-pearl-white text-navy-blue font-medium rounded-full hover:bg-navy-blue hover:text-white transition-all duration-300"
                 >
                   Book Service
@@ -100,7 +100,7 @@ export default function ServicesPage() {
               Our support team is available 24/7 to handle your emergency repair needs and minimize downtime.
             </p>
             <Link
-              href="/contact"
+              href="/support"
               className="inline-flex items-center justify-center px-8 py-4 bg-luxury-gold text-white font-bold rounded-full hover:bg-white hover:text-navy-blue transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Contact Support Team

@@ -46,7 +46,7 @@ export default function Hero() {
                 Explore Products
               </Link>
               <Link
-                href="/contact"
+                href="/distributorship"
                 className="px-8 py-4 bg-white text-navy-blue font-medium rounded-full border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center"
               >
                 Get Distributor Price
@@ -61,32 +61,20 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             className="relative h-[500px] lg:h-[700px] flex justify-center items-center"
           >
-            {/* Main Product Image with Float Animation */}
-            <motion.div
-              animate={{ y: [-15, 15, -15] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-              className="relative z-20 w-full max-w-[400px] aspect-[3/4]"
+            {/* Main Product Image with subtle float */}
+            <motion.div 
+              animate={{ y: [-10, 10, -10] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="relative z-20 w-full max-w-[500px] aspect-[3/4]"
             >
               <Image
-                src="/images/product/Ultra premium.jpeg"
-                alt="Ultra Premium Detergent"
+                src="/images/home/herro image.jpeg"
+                alt="Shlok Enterprises Product Range"
                 fill
-                className="object-contain drop-shadow-2xl rounded-2xl"
+                className="object-contain drop-shadow-2xl rounded-3xl"
                 priority
               />
             </motion.div>
-
-            {/* Floating Elements (Bubbles/Splashes representation) */}
-            <motion.div
-              animate={{ y: [0, -30, 0], opacity: [0.5, 1, 0.5] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
-              className="absolute top-[20%] right-[10%] w-16 h-16 bg-white/40 backdrop-blur-md rounded-full shadow-lg z-30"
-            />
-             <motion.div
-              animate={{ y: [0, 40, 0], opacity: [0.3, 0.8, 0.3] }}
-              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-[20%] left-[10%] w-24 h-24 bg-soft-blue/50 backdrop-blur-md rounded-full shadow-lg z-10"
-            />
           </motion.div>
         </div>
       </div>

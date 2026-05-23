@@ -3,6 +3,8 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { CartProvider } from "@/lib/CartContext";
+import CartSidebar from "@/components/CartSidebar";
 
 const playfair = Playfair_Display({ 
   subsets: ["latin"],
@@ -29,11 +31,14 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased bg-pearl-white text-navy-blue flex flex-col min-h-screen`}
       >
-        <Navbar />
-        <main className="flex-grow pt-24">
-          {children}
-        </main>
-        <Footer />
+        <CartProvider>
+          <Navbar />
+          <main className="flex-grow pt-24">
+            {children}
+          </main>
+          <Footer />
+          <CartSidebar />
+        </CartProvider>
       </body>
     </html>
   );

@@ -5,8 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { products } from "@/lib/data";
+import { useCart } from "@/lib/CartContext";
 
 export default function ProductsSection() {
+  const { addToCart } = useCart();
+
   return (
     <section className="py-24 bg-pearl-white">
       <div className="container mx-auto px-6 md:px-12">
@@ -19,15 +22,15 @@ export default function ProductsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product, index) => (
+        <div className="flex overflow-x-auto pb-8 -mx-6 px-6 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
+          {products.slice(0, 3).map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 group"
+              className="min-w-[85vw] md:min-w-0 snap-center mr-6 md:mr-0 bg-white rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 group"
             >
               <div className="relative aspect-square mb-6 overflow-hidden rounded-2xl bg-gray-50 flex items-center justify-center p-4">
                 <motion.div
@@ -55,7 +58,10 @@ export default function ProductsSection() {
                 </p>
                 <div className="flex items-center justify-between mt-auto">
                   <span className="text-xl font-bold text-navy-blue">{product.price}</span>
-                  <button className="p-3 bg-pearl-white rounded-full text-navy-blue hover:bg-royal-blue hover:text-white transition-colors">
+                  <button 
+                    onClick={() => addToCart(product)}
+                    className="p-3 bg-pearl-white rounded-full text-navy-blue hover:bg-royal-blue hover:text-white transition-colors"
+                  >
                     <ShoppingCart size={20} />
                   </button>
                 </div>

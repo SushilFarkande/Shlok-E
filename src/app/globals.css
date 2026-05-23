@@ -40,4 +40,13 @@
   .glass-dark {
     @apply bg-navy-blue/80 backdrop-blur-md border border-white/10 shadow-lg text-white;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
