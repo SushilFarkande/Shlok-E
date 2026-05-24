@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { services } from "@/lib/data";
 import { Wrench, Wind, Settings, ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Service } from "@prisma/client";
 
 const iconMap: Record<string, React.ElementType> = {
   Wrench,
@@ -12,7 +12,7 @@ const iconMap: Record<string, React.ElementType> = {
   ShieldCheck,
 };
 
-export default function ServicesSection() {
+export default function ServicesSection({ services }: { services: Service[] }) {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* Background Decor */}

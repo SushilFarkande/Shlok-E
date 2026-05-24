@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
-import { products } from "@/lib/data";
 import { useCart } from "@/lib/CartContext";
+import { Product } from "@prisma/client";
 
-export default function ProductsSection() {
+export default function ProductsSection({ products }: { products: Product[] }) {
   const { addToCart } = useCart();
 
   return (

@@ -1,11 +1,30 @@
 import Link from "next/link";
 import { Droplets, MapPin, Phone, Mail } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 
-export default function Footer() {
+export default async function Footer() {
+  const footerAds = await prisma.ad.findMany({
+    where: { isActive: true, placement: 'footer' }
+  });
+
   return (
-    <footer className="bg-white pt-20 pb-10 border-t border-gray-100">
+    <footer className="bg-white pt-10 pb-10 border-t border-gray-100">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        {/* Footer Ads */}
+        {footerAds.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {footerAds.map(ad => (
+              <a key={ad.id} href={ad.link || "#"} target={ad.link ? "_blank" : "_self"} className="block group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <img src={ad.imageUrl} alt={ad.title} className="w-full h-32 object-cover transform group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                  <span className="text-white font-bold text-sm">{ad.title}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 mt-10">
           {/* Brand Info */}
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-6 group">
@@ -23,7 +42,7 @@ export default function Footer() {
               <a href="#" className="w-10 h-10 rounded-full bg-pearl-white flex items-center justify-center text-navy-blue hover:bg-royal-blue hover:text-white transition-colors">
                 <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-pearl-white flex items-center justify-center text-navy-blue hover:bg-royal-blue hover:text-white transition-colors">
+              <a href="https://www.instagram.com/_sushil_0807?igsh=Ym15aHZ6Z2V1dHZs" target="_blank" className="w-10 h-10 rounded-full bg-pearl-white flex items-center justify-center text-navy-blue hover:bg-royal-blue hover:text-white transition-colors">
                 <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-pearl-white flex items-center justify-center text-navy-blue hover:bg-royal-blue hover:text-white transition-colors">

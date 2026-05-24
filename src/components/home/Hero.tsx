@@ -4,7 +4,17 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Hero() {
+interface Banner {
+  id: number;
+  pageSection: string;
+  imageUrl: string;
+  link: string | null;
+  isActive: boolean;
+}
+
+export default function Hero({ banner }: { banner?: Banner }) {
+  const heroImageSrc = banner?.imageUrl || "/images/home/herro image.jpeg";
+
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-soft-blue/20 to-pearl-white">
       {/* Decorative background elements */}
@@ -68,7 +78,7 @@ export default function Hero() {
               className="relative z-20 w-full max-w-[500px] aspect-[3/4]"
             >
               <Image
-                src="/images/home/herro image.jpeg"
+                src={heroImageSrc}
                 alt="Shlok Enterprises Product Range"
                 fill
                 className="object-contain drop-shadow-2xl rounded-3xl"
