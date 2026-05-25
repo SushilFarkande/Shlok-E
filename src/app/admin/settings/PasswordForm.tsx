@@ -14,11 +14,15 @@ export function PasswordForm() {
     setError("")
     setSuccess("")
     try {
-      await requestSettingsOtp()
-      setStep("verify")
-      setSuccess("OTP sent to your email!")
+      const result = await requestSettingsOtp()
+      if (result.success) {
+        setStep("verify")
+        setSuccess("OTP sent to your email!")
+      } else {
+        setError(result.error || "Failed to send OTP.")
+      }
     } catch (e: any) {
-      setError(e.message)
+      setError(e.message || "An unexpected error occurred.")
     } finally {
       setLoading(false)
     }
@@ -29,11 +33,15 @@ export function PasswordForm() {
     setError("")
     setSuccess("")
     try {
-      await updatePasswordWithOtp(formData)
-      setStep("request")
-      setSuccess("Password updated successfully!")
+      const result = await updatePasswordWithOtp(formData)
+      if (result.success) {
+        setStep("request")
+        setSuccess("Password updated successfully!")
+      } else {
+        setError(result.error || "Failed to update password.")
+      }
     } catch (e: any) {
-      setError(e.message)
+      setError(e.message || "An unexpected error occurred.")
     } finally {
       setLoading(false)
     }
