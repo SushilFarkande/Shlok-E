@@ -57,7 +57,15 @@ export default async function LoginPage() {
         </div>
       </div>
     )
-  } catch (error) {
+  } catch (error: any) {
+    if (
+      error.digest === "NEXT_REDIRECT" || 
+      error.digest === "DYNAMIC_SERVER_USAGE" ||
+      error.message === "NEXT_REDIRECT" ||
+      error.message.includes("DYNAMIC_SERVER_USAGE")
+    ) {
+      throw error;
+    }
     console.error("Login page error:", error)
     return (
       <div className="min-h-screen flex items-center justify-center p-6 bg-gray-50">
