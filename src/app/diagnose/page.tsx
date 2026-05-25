@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma";
 
 export default async function DiagnosticPage() {
-  const results: any = {};
-  const errors: any = {};
+  const results: Record<string, string | number> = {};
+  const errors: Record<string, string> = {};
 
   const tables = ['product', 'service', 'banner', 'ad', 'user'];
 
