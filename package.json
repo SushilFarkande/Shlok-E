@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
+    "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.16.0",
@@ -23,12 +24,11 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/bcrypt": "^6.0.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "bcrypt": "^6.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "prisma": "^6.19.3",
