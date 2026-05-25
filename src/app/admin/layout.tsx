@@ -7,6 +7,16 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
+  const session = await auth()
+
+  if (!session?.user) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        {children}
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col md:flex-row">
       <aside className="w-full md:w-64 bg-gray-900 text-white min-h-[200px] md:min-h-screen p-6">

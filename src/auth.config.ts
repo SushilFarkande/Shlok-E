@@ -9,13 +9,13 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
       const isOnAdmin = nextUrl.pathname.startsWith("/admin")
-      const isLogin = nextUrl.pathname === "/admin/login"
+      const isPublicRoute = nextUrl.pathname === "/admin/login" || nextUrl.pathname === "/admin/forgot-password"
 
-      if (isOnAdmin && !isLogin) {
+      if (isOnAdmin && !isPublicRoute) {
         if (isLoggedIn) return true
         return false // Redirect unauthenticated users to login page
       }
-      if (isLogin && isLoggedIn) {
+      if (isPublicRoute && isLoggedIn) {
         return Response.redirect(new URL("/admin", nextUrl))
       }
       return true
