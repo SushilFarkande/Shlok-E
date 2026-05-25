@@ -53,7 +53,7 @@ export default function Testimonials() {
                 ))}
               </div>
               <p className="text-gray-600 mb-8 leading-relaxed italic">
-                "{testimonial.content}"
+                &quot;{testimonial.content}&quot;
               </p>
               <div>
                 <h4 className="font-heading font-bold text-navy-blue">

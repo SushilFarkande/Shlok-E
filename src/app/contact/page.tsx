@@ -23,7 +23,7 @@ export default function ContactPage() {
             transition={{ delay: 0.1 }}
             className="text-lg text-gray-300 max-w-2xl mx-auto"
           >
-            Whether you're looking to become a distributor, need industrial services, or have a product inquiry, our team is here to help.
+            Whether you&apos;re looking to become a distributor, need industrial services, or have a product inquiry, our team is here to help.
           </motion.p>
         </div>
       </div>
