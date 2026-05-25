@@ -69,15 +69,13 @@ export default async function Home() {
   } catch (error) {
     console.error("Home page error:", error);
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 text-center">
-        <div>
-          <h1 className="text-2xl font-bold text-navy-blue mb-4">Under Maintenance</h1>
-          <p className="text-gray-600">We&apos;re currently updating our system. Please try again in a few minutes.</p>
-          {process.env.NODE_ENV !== 'production' && (
-            <pre className="mt-4 p-4 bg-gray-100 rounded text-left text-xs overflow-auto max-w-full">
-              {error instanceof Error ? error.message : String(error)}
-            </pre>
-          )}
+      <div className="min-h-screen flex items-center justify-center p-6 text-center bg-pearl-white">
+        <div className="glass p-12 rounded-3xl max-w-lg">
+          <h1 className="text-3xl font-bold text-navy-blue mb-4">Under Maintenance</h1>
+          <p className="text-gray-600 mb-6">We&apos;re currently updating our system to provide a better experience. Please check back shortly.</p>
+          <div className="mt-4 p-4 bg-red-50 text-red-700 rounded-2xl text-left text-xs overflow-auto border border-red-100">
+            <strong>Debug Info:</strong> {error instanceof Error ? error.message : String(error)}
+          </div>
         </div>
       </div>
     );

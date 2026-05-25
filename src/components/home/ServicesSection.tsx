@@ -39,7 +39,7 @@ export default function ServicesSection({ services }: { services: Service[] }) {
 
         <div className="flex overflow-x-auto pb-8 -mx-6 px-6 snap-x snap-mandatory md:grid md:grid-cols-2 md:gap-8 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
           {services.map((service, index) => {
-            const Icon = iconMap[service.icon];
+            const Icon = iconMap[service.icon] || Settings;
             return (
               <motion.div
                 key={service.id}
