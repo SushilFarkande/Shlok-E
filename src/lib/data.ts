@@ -3,7 +3,7 @@ export const products = [
     id: 1,
     name: "Ultra Premium Detergent Powder",
     category: "Detergents",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Industrial grade cleaning power with advanced fabric protection technology.",
     image: "/images/product/Ultra premium.jpeg"
   },
@@ -11,7 +11,7 @@ export const products = [
     id: 2,
     name: "Premium Detergent Powder",
     category: "Detergents",
-    price: "Ask for Price",
+    price: "₹125",
     description: "High-performance powder for everyday spotless freshness.",
     image: "/images/product/detergent powder.jpeg"
   },
@@ -19,7 +19,7 @@ export const products = [
     id: 3,
     name: "Power Detergent Liquid",
     category: "Detergents",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Concentrated liquid formula for deep stain penetration.",
     image: "/images/product/pdl.jpeg"
   },
@@ -27,7 +27,7 @@ export const products = [
     id: 4,
     name: "Detergent Liquid",
     category: "Detergents",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Gentle yet effective liquid detergent for all fabric types.",
     image: "/images/product/pdp.jpeg" // Reusing available image or fallback
   },
@@ -35,7 +35,7 @@ export const products = [
     id: 5,
     name: "Fabric Softner",
     category: "Softeners",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Long-lasting premium fragrance and ultra-soft fabric feel.",
     image: "/images/product/fabric softner.jpeg"
   },
@@ -43,7 +43,7 @@ export const products = [
     id: 6,
     name: "Oxy Bleach",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Advanced stain removal without damaging fabric colors.",
     image: "/images/product/oxy bleach.jpeg"
   },
@@ -51,7 +51,7 @@ export const products = [
     id: 7,
     name: "Hypo Liquid Bleach",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Powerful whitening and sanitizing agent for white fabrics.",
     image: "/images/product/hypo.jpeg"
   },
@@ -59,7 +59,7 @@ export const products = [
     id: 8,
     name: "Optical Brightner",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Restores the brilliant white glow to older garments.",
     image: "/images/product/optical bright.jpeg"
   },
@@ -67,7 +67,7 @@ export const products = [
     id: 9,
     name: "Rust Remover Liquid",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Specialized formula to eliminate stubborn rust stains instantly.",
     image: "/images/product/rust remover.jpeg"
   },
@@ -75,7 +75,7 @@ export const products = [
     id: 10,
     name: "Ink Remover Liquid",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Breaks down and lifts ink and dye stains from fabrics safely.",
     image: "/images/product/ink remover.jpeg"
   },
@@ -83,7 +83,7 @@ export const products = [
     id: 11,
     name: "Dry Clean Booster",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Enhances the cleaning power of standard dry cleaning processes.",
     image: "/images/product/dry clean booster.jpeg"
   },
@@ -91,7 +91,7 @@ export const products = [
     id: 12,
     name: "MLC 200 R",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Industrial strength degreaser and heavy stain lifter.",
     image: "/images/product/MLC 200R.jpeg"
   },
@@ -99,7 +99,7 @@ export const products = [
     id: 13,
     name: "Colour Fixer",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Locks in fabric dyes to prevent bleeding and fading during washes.",
     image: "/images/product/colour fixer.jpeg"
   },
@@ -107,7 +107,7 @@ export const products = [
     id: 14,
     name: "Caustic Soda",
     category: "Chemicals",
-    price: "Ask for Price",
+    price: "₹125",
     description: "Heavy-duty cleaning chemical for industrial laundry applications.",
     image: "/images/product/Caustic Soda.jpeg"
   }

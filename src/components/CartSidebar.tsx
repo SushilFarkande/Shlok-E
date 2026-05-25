@@ -117,7 +117,7 @@ export default function CartSidebar() {
                           </button>
                         </div>
                         <span className="font-bold text-royal-blue text-sm">
-                          {item.price === "Ask for Price" ? "Enquiry Item" : item.price}
+                          {item.price}
                         </span>
                       </div>
                     </div>
