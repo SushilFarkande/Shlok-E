@@ -6,6 +6,8 @@ import Testimonials from "@/components/home/Testimonials";
 import DistributorCTA from "@/components/home/DistributorCTA";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const products = await prisma.product.findMany({
     take: 3,
