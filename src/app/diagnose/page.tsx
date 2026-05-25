@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import fs from "fs";
+import path from "path";
 
 export default async function DiagnosticPage() {
   const results: Record<string, string | number> = {};
@@ -14,6 +16,20 @@ export default async function DiagnosticPage() {
       errors[table] = e.message;
     }
   }
+
+  const cwd = process.cwd();
+  const possiblePaths = [
+    path.join(cwd, "prisma", "dev.db"),
+    path.join(cwd, "dev.db"),
+    path.join(cwd, ".next", "server", "prisma", "dev.db"),
+    "./prisma/dev.db",
+    "./dev.db"
+  ];
+
+  const fileChecks = possiblePaths.map(p => ({
+    path: p,
+    exists: fs.existsSync(p) ? "✅ Yes" : "❌ No"
+  }));
 
   return (
     <div className="p-8 font-mono bg-pearl-white min-h-screen text-navy-blue">
@@ -33,13 +49,24 @@ export default async function DiagnosticPage() {
         </div>
 
         <div className="glass p-6 rounded-3xl">
+          <h2 className="text-xl font-bold mb-4">File System Checks</h2>
+          <ul className="space-y-2 text-[10px]">
+            {fileChecks.map((check, i) => (
+              <li key={i} className="border-b border-gray-100 pb-1 break-all">
+                <strong>{check.path}</strong>: {check.exists}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-8 glass p-6 rounded-3xl">
           <h2 className="text-xl font-bold mb-4">Environment</h2>
           <ul className="space-y-2">
             <li><strong>NODE_ENV:</strong> {process.env.NODE_ENV}</li>
-            <li><strong>AUTH_SECRET:</strong> {process.env.AUTH_SECRET ? "âœ…" : "âŒ"}</li>
-            <li><strong>DATABASE_URL:</strong> {process.env.DATABASE_URL || "Using Default (prisma/dev.db)"}</li>
+            <li><strong>CWD:</strong> {cwd}</li>
+            <li><strong>DATABASE_URL:</strong> {process.env.DATABASE_URL || "Not Set"}</li>
           </ul>
-        </div>
       </div>
 
       {Object.keys(errors).length > 0 && (
@@ -55,10 +82,6 @@ export default async function DiagnosticPage() {
           ))}
         </div>
       )}
-
-      <div className="mt-8 text-center text-gray-400 text-xs">
-        Refreshed at: {new Date().toLocaleTimeString()}
-      </div>
     </div>
   );
 }
