@@ -9,7 +9,7 @@ export default function CartSidebar() {
   const { cart, removeFromCart, updateQuantity, isCartOpen, setIsCartOpen, totalItems } = useCart();
 
   const handleWhatsAppCheckout = () => {
-    const phoneNumber = "91XXXXXXXXXX"; // Replace with real number
+    const phoneNumber = "917821098466"; // Updated with real number
     let message = "Hello Shlok Enterprises, I would like to order:\n\n";
     
     cart.forEach((item, index) => {

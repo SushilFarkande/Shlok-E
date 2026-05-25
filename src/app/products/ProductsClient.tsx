@@ -139,9 +139,15 @@ export default function ProductsClient({ products, banner }: { products: Product
                         {product.description}
                       </p>
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                        <Link href="/contact" className="text-sm font-bold text-royal-blue hover:text-navy-blue transition-colors">
+                        <button 
+                          onClick={() => {
+                            const text = `Hello Shlok Enterprises, I'm interested in the product: *${product.name}*. Please provide more details and pricing.`;
+                            window.open(`https://wa.me/917821098466?text=${encodeURIComponent(text)}`, "_blank");
+                          }}
+                          className="text-sm font-bold text-royal-blue hover:text-navy-blue transition-colors"
+                        >
                           {product.price}
-                        </Link>
+                        </button>
                         <button 
                           onClick={() => addToCart(product)}
                           className="p-3 bg-pearl-white rounded-full text-navy-blue hover:bg-royal-blue hover:text-white transition-colors"
