@@ -3,17 +3,23 @@ import { Droplets, MapPin, Phone, Mail } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 
 export default async function Footer() {
-  const footerAds = await prisma.ad.findMany({
-    where: { isActive: true, placement: 'footer' }
-  });
+  let serializedAds = [];
+  try {
+    const footerAds = await prisma.ad.findMany({
+      where: { isActive: true, placement: 'footer' }
+    });
+    serializedAds = JSON.parse(JSON.stringify(footerAds));
+  } catch (error) {
+    console.error("Footer ads fetch error:", error);
+  }
 
   return (
     <footer className="bg-white pt-10 pb-10 border-t border-gray-100">
       <div className="container mx-auto px-6 md:px-12">
         {/* Footer Ads */}
-        {footerAds.length > 0 && (
+        {serializedAds.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {footerAds.map(ad => (
+            {serializedAds.map((ad: any) => (
               <a key={ad.id} href={ad.link || "#"} target={ad.link ? "_blank" : "_self"} className="block group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <img src={ad.imageUrl} alt={ad.title} className="w-full h-32 object-cover transform group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
@@ -95,7 +101,7 @@ export default async function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm text-center md:text-left">
-            © {new Date().getFullYear()} Shlok Enterprises and Manufacturer. All rights reserved.
+            &copy; {new Date().getFullYear()} Shlok Enterprises and Manufacturer. All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-gray-400 text-sm hover:text-royal-blue transition-colors">Privacy Policy</Link>
