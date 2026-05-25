@@ -1,9 +1,11 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
+import { authConfig } from "./auth.config"
 import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  ...authConfig,
   providers: [
     Credentials({
       credentials: {
@@ -11,9 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
-        let user = null
-        
-        user = await prisma.user.findUnique({
+        const user = await prisma.user.findUnique({
           where: { email: credentials.email as string }
         })
 
@@ -30,23 +30,4 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: "/admin/login",
-  },
-  callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user
-      const isOnAdmin = nextUrl.pathname.startsWith("/admin")
-      const isLogin = nextUrl.pathname === "/admin/login"
-
-      if (isOnAdmin && !isLogin) {
-        if (isLoggedIn) return true
-        return false // Redirect unauthenticated users to login page
-      }
-      if (isLogin && isLoggedIn) {
-        return Response.redirect(new URL("/admin", nextUrl))
-      }
-      return true
-    },
-  },
 })
