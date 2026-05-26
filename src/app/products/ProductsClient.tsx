@@ -13,7 +13,20 @@ export default function ProductsClient({ products, banner }: { products: Product
   const [searchQuery, setSearchQuery] = useState("");
   const { addToCart } = useCart();
 
-  const categories = ["All", ...Array.from(new Set(products.map(p => p.category)))];
+  const rawCategories = Array.from(new Set(products.map(p => p.category)));
+  rawCategories.sort((a, b) => {
+    const getScore = (cat: string) => {
+      const lower = cat.toLowerCase();
+      if (lower.includes("detergent")) return 1;
+      if (lower.includes("softner") || lower.includes("softener")) return 2;
+      if (lower.includes("chemical")) return 3;
+      if (lower.includes("accessori")) return 4;
+      return 5; // Other categories go to the end
+    };
+    return getScore(a) - getScore(b);
+  });
+
+  const categories = ["All", ...rawCategories];
 
   const categoriesToDisplay = activeCategory === "All" 
     ? categories.filter(c => c !== "All")
