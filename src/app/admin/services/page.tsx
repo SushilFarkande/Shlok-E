@@ -10,11 +10,13 @@ export default async function AdminServicesPage({ searchParams }: { searchParams
     editId ? prisma.service.findUnique({ where: { id: editId } }) : Promise.resolve(null)
   ]);
 
+  const serializedEditItem = editItem ? JSON.parse(JSON.stringify(editItem)) : null;
+
   return (
     <div className="max-w-6xl mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8">Manage Services</h1>
       
-      <ServiceForm editItem={editItem} />
+      <ServiceForm editItem={serializedEditItem} />
 
       <div className="bg-white rounded-lg shadow overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">

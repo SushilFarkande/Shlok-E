@@ -4,13 +4,17 @@ import ServicesClient from "./ServicesClient";
 export const dynamic = "force-dynamic";
 
 export default async function ServicesPage() {
-  try {
-    const services = await prisma.service.findMany();
-    const serializedServices = JSON.parse(JSON.stringify(services));
+  let services = [];
+  let errorState = null;
 
-    return <ServicesClient services={serializedServices} />;
+  try {
+    services = await prisma.service.findMany();
   } catch (error) {
     console.error("Services page error:", error);
+    errorState = error;
+  }
+
+  if (errorState) {
     return (
       <div className="py-24 text-center">
         <h2 className="text-2xl font-bold text-navy-blue mb-4">Service Unavailable</h2>
@@ -18,4 +22,8 @@ export default async function ServicesPage() {
       </div>
     );
   }
+
+  const serializedServices = JSON.parse(JSON.stringify(services));
+
+  return <ServicesClient services={serializedServices} />;
 }
