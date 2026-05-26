@@ -24,11 +24,13 @@ export default function ForgotPasswordPage() {
     try {
       const result = await requestOtp(formData)
       if (result.success) {
-        setSuccess(result.message)
+        setSuccess(result.message || "OTP sent successfully")
         setStep("reset")
+      } else {
+        setError(result.error || "Failed to send OTP")
       }
     } catch (e: any) {
-      setError(e.message)
+      setError("An unexpected error occurred.")
     } finally {
       setLoading(false)
     }
@@ -47,9 +49,11 @@ export default function ForgotPasswordPage() {
       if (result.success) {
         alert("Password reset successfully! You can now login.")
         router.push("/admin/login")
+      } else {
+        setError(result.error || "Failed to reset password")
       }
     } catch (e: any) {
-      setError(e.message)
+      setError("An unexpected error occurred.")
     } finally {
       setLoading(false)
     }
