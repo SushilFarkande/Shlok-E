@@ -1,17 +1,39 @@
 import { prisma } from "@/lib/prisma"
 import { BannerForm, ActionButtons } from "./BannerForm"
 import Image from "next/image"
+import { Banner } from "@prisma/client"
 
 export default async function AdminBannersPage({ searchParams }: { searchParams: Promise<{ editId?: string }> }) {
   const params = await searchParams;
   const editId = params.editId ? parseInt(params.editId) : undefined;
   
-  const [banners, editItem] = await Promise.all([
-    prisma.banner.findMany({ orderBy: { id: 'desc' } }),
-    editId ? prisma.banner.findUnique({ where: { id: editId } }) : Promise.resolve(null)
-  ]);
+  let banners: Banner[] = [];
+  let serializedEditItem: any = null;
+  let errorState: any = null;
 
-  const serializedEditItem = editItem ? JSON.parse(JSON.stringify(editItem)) : null;
+  try {
+    const [fetchedBanners, editItem] = await Promise.all([
+      prisma.banner.findMany({ orderBy: { id: 'desc' } }),
+      editId ? prisma.banner.findUnique({ where: { id: editId } }) : Promise.resolve(null)
+    ]);
+    banners = fetchedBanners;
+    serializedEditItem = editItem ? JSON.parse(JSON.stringify(editItem)) : null;
+  } catch (error) {
+    console.error("Admin banners page error:", error);
+    errorState = error;
+  }
+
+  if (errorState) {
+    return (
+      <div className="max-w-6xl mx-auto py-8 px-4 text-center">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Error Loading Banners</h1>
+        <p className="text-gray-600 mb-4">There was a problem communicating with the database.</p>
+        <div className="p-4 bg-red-50 text-red-700 rounded-lg text-xs overflow-auto text-left">
+          <strong>Debug:</strong> {errorState instanceof Error ? errorState.message : String(errorState)}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto py-8 px-4">

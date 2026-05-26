@@ -1,17 +1,39 @@
 import { prisma } from "@/lib/prisma"
 import { ProductForm, ActionButtons } from "./ProductForm"
 import Image from "next/image"
+import { Product } from "@prisma/client"
 
 export default async function AdminProductsPage({ searchParams }: { searchParams: Promise<{ editId?: string }> }) {
   const params = await searchParams;
   const editId = params.editId ? parseInt(params.editId) : undefined;
   
-  const [products, editItem] = await Promise.all([
-    prisma.product.findMany({ orderBy: { id: 'desc' } }),
-    editId ? prisma.product.findUnique({ where: { id: editId } }) : Promise.resolve(null)
-  ]);
+  let products: Product[] = [];
+  let serializedEditItem: any = null;
+  let errorState: any = null;
 
-  const serializedEditItem = editItem ? JSON.parse(JSON.stringify(editItem)) : null;
+  try {
+    const [fetchedProducts, editItem] = await Promise.all([
+      prisma.product.findMany({ orderBy: { id: 'desc' } }),
+      editId ? prisma.product.findUnique({ where: { id: editId } }) : Promise.resolve(null)
+    ]);
+    products = fetchedProducts;
+    serializedEditItem = editItem ? JSON.parse(JSON.stringify(editItem)) : null;
+  } catch (error) {
+    console.error("Admin products page error:", error);
+    errorState = error;
+  }
+
+  if (errorState) {
+    return (
+      <div className="max-w-6xl mx-auto py-8 px-4 text-center">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Error Loading Products</h1>
+        <p className="text-gray-600 mb-4">There was a problem communicating with the database.</p>
+        <div className="p-4 bg-red-50 text-red-700 rounded-lg text-xs overflow-auto text-left">
+          <strong>Debug:</strong> {errorState instanceof Error ? errorState.message : String(errorState)}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto py-8 px-4">

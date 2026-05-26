@@ -1,16 +1,38 @@
 import { prisma } from "@/lib/prisma"
 import { ServiceForm, ActionButtons } from "./ServiceForm"
+import { Service } from "@prisma/client"
 
 export default async function AdminServicesPage({ searchParams }: { searchParams: Promise<{ editId?: string }> }) {
   const params = await searchParams;
   const editId = params.editId;
   
-  const [services, editItem] = await Promise.all([
-    prisma.service.findMany(),
-    editId ? prisma.service.findUnique({ where: { id: editId } }) : Promise.resolve(null)
-  ]);
+  let services: Service[] = [];
+  let serializedEditItem: any = null;
+  let errorState: any = null;
 
-  const serializedEditItem = editItem ? JSON.parse(JSON.stringify(editItem)) : null;
+  try {
+    const [fetchedServices, editItem] = await Promise.all([
+      prisma.service.findMany(),
+      editId ? prisma.service.findUnique({ where: { id: editId } }) : Promise.resolve(null)
+    ]);
+    services = fetchedServices;
+    serializedEditItem = editItem ? JSON.parse(JSON.stringify(editItem)) : null;
+  } catch (error) {
+    console.error("Admin services page error:", error);
+    errorState = error;
+  }
+
+  if (errorState) {
+    return (
+      <div className="max-w-6xl mx-auto py-8 px-4 text-center">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">Error Loading Services</h1>
+        <p className="text-gray-600 mb-4">There was a problem communicating with the database.</p>
+        <div className="p-4 bg-red-50 text-red-700 rounded-lg text-xs overflow-auto text-left">
+          <strong>Debug:</strong> {errorState instanceof Error ? errorState.message : String(errorState)}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto py-8 px-4">
