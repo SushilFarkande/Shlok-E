@@ -1,6 +1,12 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
 
 export interface Product {
   id: number;
@@ -28,50 +34,74 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export function CartProvider({ children }: { children: React.ReactNode }) {
+export function CartProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  // Load cart from localStorage
+  // Prevent hydration mismatch
   useEffect(() => {
-    const savedCart = localStorage.getItem('sweep-plus-cart');
+    setMounted(true);
+
+    const savedCart = localStorage.getItem("sweep-plus-cart");
+
     if (savedCart) {
       try {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setCart(JSON.parse(savedCart));
-      } catch (e) {
-        console.error('Failed to parse cart', e);
+      } catch (error) {
+        console.error("Failed to parse cart:", error);
       }
     }
   }, []);
 
   // Save cart to localStorage
   useEffect(() => {
-    localStorage.setItem('sweep-plus-cart', JSON.stringify(cart));
-  }, [cart]);
+    if (mounted) {
+      localStorage.setItem("sweep-plus-cart", JSON.stringify(cart));
+    }
+  }, [cart, mounted]);
 
   const addToCart = (product: Product) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
+      const existingItem = prevCart.find(
+        (item) => item.id === product.id
+      );
+
       if (existingItem) {
         return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
       }
+
       return [...prevCart, { ...product, quantity: 1 }];
     });
+
     setIsCartOpen(true);
   };
 
   const removeFromCart = (productId: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    setCart((prevCart) =>
+      prevCart.filter((item) => item.id !== productId)
+    );
   };
 
-  const updateQuantity = (productId: number, quantity: number) => {
+  const updateQuantity = (
+    productId: number,
+    quantity: number
+  ) => {
     if (quantity < 1) return;
+
     setCart((prevCart) =>
       prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
+        item.id === productId
+          ? { ...item, quantity }
+          : item
       )
     );
   };
@@ -80,7 +110,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCart([]);
   };
 
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = useMemo(
+    () => cart.reduce((sum, item) => sum + item.quantity, 0),
+    [cart]
+  );
 
   return (
     <CartContext.Provider
@@ -102,8 +135,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
 export function useCart() {
   const context = useContext(CartContext);
-  if (context === undefined) {
-    throw new Error('useCart must be used within a CartProvider');
+
+  if (!context) {
+    throw new Error(
+      "useCart must be used within a CartProvider"
+    );
   }
+
   return context;
 }
