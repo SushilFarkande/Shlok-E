@@ -47,7 +47,12 @@ export function ProductForm({ editItem }: { editItem?: Product | null }) {
         
         <div>
           <label className="block text-sm font-medium text-gray-700">Category</label>
-          <input type="text" name="category" defaultValue={editItem?.category} required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+          <select name="category" defaultValue={editItem?.category || "Detergents"} required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 bg-white">
+            <option value="Detergents">Detergents</option>
+            <option value="Softeners">Softeners</option>
+            <option value="Chemicals">Chemicals</option>
+            <option value="Accessories">Accessories</option>
+          </select>
         </div>
         
         <div>

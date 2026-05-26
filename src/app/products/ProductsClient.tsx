@@ -13,7 +13,8 @@ export default function ProductsClient({ products, banner }: { products: Product
   const [searchQuery, setSearchQuery] = useState("");
   const { addToCart } = useCart();
 
-  const rawCategories = Array.from(new Set(products.map(p => p.category)));
+  const predefinedCategories = ["Detergents", "Softeners", "Chemicals", "Accessories"];
+  const rawCategories = Array.from(new Set([...predefinedCategories, ...products.map(p => p.category)]));
   rawCategories.sort((a, b) => {
     const getScore = (cat: string) => {
       const lower = cat.toLowerCase();
