@@ -5,15 +5,16 @@ import ServicesSection from "@/components/home/ServicesSection";
 import Testimonials from "@/components/home/Testimonials";
 import DistributorCTA from "@/components/home/DistributorCTA";
 import { prisma } from "@/lib/prisma";
+import { Product, Service, Banner, Ad } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  let products = [];
-  let services = [];
-  let activeBanners = [];
-  let activeAds = [];
-  let errorState = null;
+  let products: Product[] = [];
+  let services: Service[] = [];
+  let activeBanners: Banner[] = [];
+  let activeAds: Ad[] = [];
+  let errorState: any = null;
 
   try {
     products = await prisma.product.findMany({

@@ -1,11 +1,12 @@
 import { prisma } from "@/lib/prisma";
 import ServicesClient from "./ServicesClient";
+import { Service } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
 export default async function ServicesPage() {
-  let services = [];
-  let errorState = null;
+  let services: Service[] = [];
+  let errorState: any = null;
 
   try {
     services = await prisma.service.findMany();
