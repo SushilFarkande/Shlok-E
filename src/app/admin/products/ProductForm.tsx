@@ -13,13 +13,21 @@ export function ProductForm({ editItem }: { editItem?: Product | null }) {
     setLoading(true)
     try {
       if (editItem) {
-        await updateProduct(editItem.id, formData)
-        alert("Product updated successfully!")
-        window.location.href = "/admin/products"
+        const result = await updateProduct(editItem.id, formData)
+        if (result.success) {
+          alert("Product updated successfully!")
+          window.location.href = "/admin/products"
+        } else {
+          alert("Error: " + result.error)
+        }
       } else {
-        await addProduct(formData)
-        formRef.current?.reset()
-        alert("Product added successfully!")
+        const result = await addProduct(formData)
+        if (result.success) {
+          formRef.current?.reset()
+          alert("Product added successfully!")
+        } else {
+          alert("Error: " + result.error)
+        }
       }
     } catch (e: any) {
       alert("Error: " + e.message)
@@ -91,8 +99,16 @@ export function ActionButtons({ id }: { id: number }) {
         onClick={async () => {
           if (confirm("Are you sure you want to delete this product?")) {
             setLoading(true)
-            await deleteProduct(id)
-            setLoading(false)
+            try {
+              const result = await deleteProduct(id)
+              if (!result.success) {
+                alert("Error: " + result.error)
+              }
+            } catch (e: any) {
+              alert("Error: " + e.message)
+            } finally {
+              setLoading(false)
+            }
           }
         }}
         className="text-red-600 hover:text-red-900 text-sm font-medium disabled:opacity-50"

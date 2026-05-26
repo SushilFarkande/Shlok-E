@@ -13,13 +13,21 @@ export function ServiceForm({ editItem }: { editItem?: Service | null }) {
     setLoading(true)
     try {
       if (editItem) {
-        await updateService(editItem.id, formData)
-        alert("Service updated successfully!")
-        window.location.href = "/admin/services"
+        const result = await updateService(editItem.id, formData)
+        if (result.success) {
+          alert("Service updated successfully!")
+          window.location.href = "/admin/services"
+        } else {
+          alert("Error: " + result.error)
+        }
       } else {
-        await addService(formData)
-        formRef.current?.reset()
-        alert("Service added successfully!")
+        const result = await addService(formData)
+        if (result.success) {
+          formRef.current?.reset()
+          alert("Service added successfully!")
+        } else {
+          alert("Error: " + result.error)
+        }
       }
     } catch (e: any) {
       alert("Error: " + e.message)
@@ -81,8 +89,16 @@ export function ActionButtons({ id }: { id: string }) {
         onClick={async () => {
           if (confirm("Are you sure you want to delete this service?")) {
             setLoading(true)
-            await deleteService(id)
-            setLoading(false)
+            try {
+              const result = await deleteService(id)
+              if (!result.success) {
+                alert("Error: " + result.error)
+              }
+            } catch (e: any) {
+              alert("Error: " + e.message)
+            } finally {
+              setLoading(false)
+            }
           }
         }}
         className="text-red-600 hover:text-red-900 text-sm font-medium disabled:opacity-50"

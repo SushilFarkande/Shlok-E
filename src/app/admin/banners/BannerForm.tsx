@@ -13,13 +13,21 @@ export function BannerForm({ editItem }: { editItem?: Banner | null }) {
     setLoading(true)
     try {
       if (editItem) {
-        await updateBanner(editItem.id, formData)
-        alert("Banner updated successfully!")
-        window.location.href = "/admin/banners"
+        const result = await updateBanner(editItem.id, formData)
+        if (result.success) {
+          alert("Banner updated successfully!")
+          window.location.href = "/admin/banners"
+        } else {
+          alert("Error: " + result.error)
+        }
       } else {
-        await addBanner(formData)
-        formRef.current?.reset()
-        alert("Banner added successfully!")
+        const result = await addBanner(formData)
+        if (result.success) {
+          formRef.current?.reset()
+          alert("Banner added successfully!")
+        } else {
+          alert("Error: " + result.error)
+        }
       }
     } catch (e: any) {
       alert("Error: " + e.message)
@@ -79,8 +87,16 @@ export function ActionButtons({ id, isActive }: { id: number, isActive: boolean 
         disabled={loading}
         onClick={async () => {
           setLoading(true)
-          await toggleBanner(id, !isActive)
-          setLoading(false)
+          try {
+            const result = await toggleBanner(id, !isActive)
+            if (!result.success) {
+              alert("Error: " + result.error)
+            }
+          } catch (e: any) {
+            alert("Error: " + e.message)
+          } finally {
+            setLoading(false)
+          }
         }}
         className={`${isActive ? "text-yellow-600 hover:text-yellow-900" : "text-green-600 hover:text-green-900"} text-sm font-medium disabled:opacity-50`}
       >
@@ -91,8 +107,16 @@ export function ActionButtons({ id, isActive }: { id: number, isActive: boolean 
         onClick={async () => {
           if (confirm("Are you sure you want to delete this banner?")) {
             setLoading(true)
-            await deleteBanner(id)
-            setLoading(false)
+            try {
+              const result = await deleteBanner(id)
+              if (!result.success) {
+                alert("Error: " + result.error)
+              }
+            } catch (e: any) {
+              alert("Error: " + e.message)
+            } finally {
+              setLoading(false)
+            }
           }
         }}
         className="text-red-600 hover:text-red-900 text-sm font-medium disabled:opacity-50"
