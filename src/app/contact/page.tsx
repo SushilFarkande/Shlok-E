@@ -2,8 +2,41 @@
 
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    inquiryType: "Distributor Inquiry",
+    message: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Format the WhatsApp message
+    const text = `*New Contact Form Inquiry*
+    
+*Name:* ${formData.firstName} ${formData.lastName}
+*Email:* ${formData.email}
+*Inquiry Type:* ${formData.inquiryType}
+
+*Message:*
+${formData.message}`;
+
+    const encodedText = encodeURIComponent(text);
+    // Open WhatsApp URL (using +91 7821098466 as the primary number)
+    const whatsappUrl = `https://wa.me/917821098466?text=${encodedText}`;
+    
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <div className="bg-pearl-white min-h-screen">
       {/* Header */}
@@ -108,12 +141,16 @@ export default function ContactPage() {
             className="bg-white p-8 md:p-10 rounded-3xl shadow-xl"
           >
             <h3 className="text-2xl font-heading font-bold text-navy-blue mb-6">Send us a message</h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
                   <input 
                     type="text" 
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:bg-white focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all"
                     placeholder="John"
                   />
@@ -122,6 +159,10 @@ export default function ContactPage() {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
                   <input 
                     type="text" 
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:bg-white focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all"
                     placeholder="Doe"
                   />
@@ -132,6 +173,10 @@ export default function ContactPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                 <input 
                   type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:bg-white focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all"
                   placeholder="john@example.com"
                 />
@@ -139,7 +184,12 @@ export default function ContactPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Inquiry Type</label>
-                <select className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:bg-white focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all appearance-none">
+                <select 
+                  name="inquiryType"
+                  value={formData.inquiryType}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:bg-white focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all appearance-none"
+                >
                   <option>Distributor Inquiry</option>
                   <option>Product Purchase</option>
                   <option>Service & Repair Booking</option>
@@ -150,6 +200,10 @@ export default function ContactPage() {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                 <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   rows={4}
                   className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-100 focus:bg-white focus:border-royal-blue focus:ring-2 focus:ring-royal-blue/20 outline-none transition-all resize-none"
                   placeholder="How can we help you?"
