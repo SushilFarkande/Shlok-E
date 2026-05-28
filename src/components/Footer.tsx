@@ -115,10 +115,3 @@ export default async function Footer() {
     </footer>
   );
 }
-yal-blue transition-colors">Terms of Service</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
