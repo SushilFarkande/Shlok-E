@@ -36,9 +36,7 @@ export default function Navbar() {
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="p-2 bg-royal-blue rounded-full text-white group-hover:bg-luxury-gold transition-colors duration-300">
-             <Droplets size={24} />
-          </div>
+          
           <span className="font-heading font-bold text-2xl tracking-wide">
             Shlok Enterprises and Manufacturers
           </span>

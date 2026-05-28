@@ -6,22 +6,22 @@ import { Sparkles, Shield, Droplets, Droplet } from "lucide-react";
 export default function FeaturesStrip() {
   const features = [
     {
-      icon: <Sparkles className="text-luxury-gold" size={32} />,
+      icon: <Sparkles className="text-luxury-gold" size={30} />,
       title: "Premium Ingredients",
       description: "Highest quality raw materials for professional results."
     },
     {
-      icon: <Droplets className="text-luxury-gold" size={32} />,
+      icon: <Droplets className="text-luxury-gold" size={30} />,
       title: "Long Lasting Fragrance",
       description: "Signature scents that stay fresh for weeks."
     },
     {
-      icon: <Shield className="text-luxury-gold" size={32} />,
+      icon: <Shield className="text-luxury-gold" size={30} />,
       title: "Fabric Protection",
       description: "Advanced formula preserves colors and fabric life."
     },
     {
-      icon: <Droplet className="text-luxury-gold" size={32} />,
+      icon: <Droplet className="text-luxury-gold" size={30} />,
       title: "Powerful Stain Removal",
       description: "Tough on industrial stains, gentle on clothes."
     }

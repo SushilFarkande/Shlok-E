@@ -33,10 +33,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 mt-10">
           {/* Brand Info */}
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-6 group">
-              <div className="p-2 bg-royal-blue rounded-full text-white group-hover:bg-luxury-gold transition-colors duration-300">
-                <Droplets size={20} />
-              </div>
+            <Link href="/" className="flex items-center gap-2 mb-6 group">              
               <span className="font-heading font-bold text-xl tracking-wide">
                 Shlok Enterprises and Manufacturers
               </span>
