@@ -31,6 +31,12 @@ export default function Hero({ banner }: { banner?: Banner }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
+             <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-white border border-gray-100 shadow-sm">
+              <span className="text-sm font-semibold tracking-wider text-royal-blue uppercase">
+                 Sweep Plus
+              </span>
+            </div>            
+
             <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-white border border-gray-100 shadow-sm">
               <span className="text-sm font-semibold tracking-wider text-royal-blue uppercase">
                 Premium Laundry Care
