@@ -38,7 +38,7 @@ export default async function Footer() {
                 <Droplets size={20} />
               </div>
               <span className="font-heading font-bold text-xl tracking-wide">
-                Sweep Plus
+                Shlok Enterprises and Manufacturers
               </span>
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed mb-6">

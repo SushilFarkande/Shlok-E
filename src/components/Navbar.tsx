@@ -40,7 +40,7 @@ export default function Navbar() {
              <Droplets size={24} />
           </div>
           <span className="font-heading font-bold text-2xl tracking-wide">
-            Sweep Plus
+            Shlok Enterprises and Manufacturers
           </span>
         </Link>
 
