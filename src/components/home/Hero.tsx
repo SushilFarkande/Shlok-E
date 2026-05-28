@@ -48,7 +48,7 @@ export default function Hero({ banner }: { banner?: Banner }) {
             <div className="mb-8 p-5 bg-gradient-to-r from-navy-blue to-royal-blue rounded-2xl inline-block shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform border border-white/10 relative overflow-hidden">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&q=80&w=1200')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
               <div className="relative z-10 flex flex-col pr-8">
-                <span className="text-xs md:text-sm text-gray-300 font-medium uppercase tracking-widest mb-1">A Trademark Product of</span>
+                
                 <span className="text-4xl md:text-5xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-luxury-gold to-yellow-400 tracking-wider drop-shadow-md">
                   SWEEP PLUS™
                 </span>
