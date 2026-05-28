@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Droplets, MapPin, Phone, Mail } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 
@@ -108,6 +109,13 @@ export default async function Footer() {
           <div className="flex gap-6">
             <Link href="/privacy" className="text-gray-400 text-sm hover:text-royal-blue transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-gray-400 text-sm hover:text-royal-blue transition-colors">Terms of Service</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+yal-blue transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>

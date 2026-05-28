@@ -36,10 +36,15 @@ export default function Navbar() {
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          
-          <span className="font-heading font-bold text-2xl tracking-wide">
-            Shlok Enterprises and Manufacturers
-          </span>
+          <div className="relative w-32 md:w-40 h-10 md:h-12 flex-shrink-0">
+            <Image 
+              src="/images/home/logo.png" 
+              alt="Shlok Enterprises Logo" 
+              fill 
+              className="object-contain object-left"
+              priority
+            />
+          </div>
         </Link>
 
         {/* Desktop Links */}
