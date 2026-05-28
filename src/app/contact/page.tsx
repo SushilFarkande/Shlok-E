@@ -50,6 +50,14 @@ export default function ContactPage() {
                     Gat no 353, Pirangut, Mulshi<br />
                     Pune, Maharashtra 412115
                   </p>
+                  <a 
+                    href="https://www.google.com/maps/place/Shlok+Enterprises+And+Manufacturers/@18.5082158,73.6894944,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2bd51ecf27039:0x8fd3c210d47c175f!8m2!3d18.5082158!4d73.6920693!16s%2Fg%2F11zblm0b_9?hl=en&entry=ttu&g_ep=EgoyMDI2MDUyNS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-royal-blue hover:underline text-sm font-semibold mt-2 inline-block transition-all hover:gap-1 flex items-center gap-1"
+                  >
+                    View on Google Maps <span>→</span>
+                  </a>
                 </div>
               </div>
 
@@ -158,20 +166,40 @@ export default function ContactPage() {
           </motion.div>
         </div>
 
-        {/* Map Placeholder */}
+        {/* Map Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-24 h-[400px] w-full rounded-3xl overflow-hidden bg-gray-200 relative shadow-inner"
+          className="mt-24 h-[500px] w-full rounded-3xl overflow-hidden bg-gray-200 relative shadow-xl border-4 border-white"
         >
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04360434468!2d73.71434969999999!3d18.5246036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf83f6f1c713%3A0xc66c1f1027116f1!2sPirangut%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15137.77736951578!2d73.6920693!3d18.5082158!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bd51ecf27039%3A0x8fd3c210d47c175f!2sShlok%20Enterprises%20And%20Manufacturers!5e0!3m2!1sen!2sin!4v1716913665392!5m2!1sen!2sin" 
             className="absolute inset-0 w-full h-full border-0" 
             allowFullScreen 
             loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
+            title="Shlok Enterprises Location"
           ></iframe>
+          
+          {/* Custom Overlay (Vector and Name) */}
+          <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm p-5 rounded-2xl shadow-lg border border-gray-100 hidden md:flex items-center gap-4 max-w-sm">
+            <div className="bg-navy-blue p-3 rounded-xl text-white shadow-lg shadow-navy-blue/20">
+              <MapPin size={24} />
+            </div>
+            <div>
+              <h4 className="font-heading font-bold text-navy-blue">Shlok Enterprises</h4>
+              <p className="text-xs text-gray-500 mb-2">Pirangut, Mulshi, Pune</p>
+              <a 
+                href="https://www.google.com/maps/place/Shlok+Enterprises+And+Manufacturers/@18.5082158,73.6894944,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2bd51ecf27039:0x8fd3c210d47c175f!8m2!3d18.5082158!4d73.6920693!16s%2Fg%2F11zblm0b_9?hl=en&entry=ttu&g_ep=EgoyMDI2MDUyNS4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-3 py-1.5 bg-royal-blue text-white rounded-lg text-xs font-bold hover:bg-navy-blue transition-colors shadow-sm"
+              >
+                Get Directions <Send size={12} />
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>

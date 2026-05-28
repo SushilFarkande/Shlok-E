@@ -77,10 +77,15 @@ export default async function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-4">
                 <MapPin className="text-royal-blue shrink-0 mt-1" size={20} />
-                <span className="text-gray-500 text-sm leading-relaxed">
+                <a 
+                  href="https://www.google.com/maps/place/Shlok+Enterprises+And+Manufacturers/@18.5082158,73.6894944,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2bd51ecf27039:0x8fd3c210d47c175f!8m2!3d18.5082158!4d73.6920693!16s%2Fg%2F11zblm0b_9?hl=en&entry=ttu&g_ep=EgoyMDI2MDUyNS4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-500 text-sm leading-relaxed hover:text-royal-blue transition-colors"
+                >
                   Shlok Enterprises and Manufacturers<br />
                   Gat no 353, Pirangut, Mulshi, Pune 412115
-                </span>
+                </a>
               </li>
               <li className="flex items-center gap-4">
                 <Phone className="text-royal-blue shrink-0" size={20} />
