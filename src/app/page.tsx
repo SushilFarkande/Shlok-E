@@ -4,6 +4,7 @@ import ProductsSection from "@/components/home/ProductsSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import Testimonials from "@/components/home/Testimonials";
 import DistributorCTA from "@/components/home/DistributorCTA";
+import PopupAd from "@/components/PopupAd";
 import { prisma } from "@/lib/prisma";
 import { Product, Service, Banner, Ad } from "@prisma/client";
 
@@ -89,6 +90,9 @@ export default async function Home() {
       <ServicesSection services={serializedServices} />
       <Testimonials />
       <DistributorCTA />
+      
+      {/* Popup Advertisement (conditionally rendered client-side based on session) */}
+      <PopupAd ads={serializedAds} />
     </>
   );
 }
