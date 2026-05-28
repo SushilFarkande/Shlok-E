@@ -64,8 +64,8 @@ export function ProductForm({ editItem }: { editItem?: Product | null }) {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700">Price</label>
-          <input type="text" name="price" defaultValue={editItem?.price || "₹125"} required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
+          <label className="block text-sm font-medium text-gray-700">Price (Hidden from public)</label>
+          <input type="text" name="price" defaultValue={editItem?.price || "Ask for Price"} required className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" />
         </div>
         
         <div>

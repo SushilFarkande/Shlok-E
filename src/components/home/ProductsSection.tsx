@@ -62,9 +62,9 @@ export default function ProductsSection({ products }: { products: Product[] }) {
                       const text = `Hello Shlok Enterprises, I'm interested in the product: *${product.name}*. Please provide more details and pricing.`;
                       window.open(`https://wa.me/917821098466?text=${encodeURIComponent(text)}`, "_blank");
                     }}
-                    className="text-xl font-bold text-navy-blue hover:text-royal-blue transition-colors"
+                    className="text-lg font-bold text-navy-blue hover:text-royal-blue transition-colors"
                   >
-                    {product.price}
+                    Ask for Price
                   </button>
                   <button 
                     onClick={() => addToCart(product)}

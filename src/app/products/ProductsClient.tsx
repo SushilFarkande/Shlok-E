@@ -237,7 +237,7 @@ export default function ProductsClient({
                             }}
                             className="text-sm font-bold text-royal-blue hover:text-navy-blue transition-colors"
                           >
-                            {product.price}
+                            Ask for Price
                           </button>
 
                           {/* Add to Cart */}
