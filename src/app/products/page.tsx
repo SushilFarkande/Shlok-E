@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import ProductsClient from "./ProductsClient";
 import { Product, Banner } from "@prisma/client";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // Cache and revalidate every 60 seconds
 
 export default async function ProductsPage() {
   let products: Product[] = [];
@@ -10,16 +10,18 @@ export default async function ProductsPage() {
   let errorState: any = null;
 
   try {
-    products = await prisma.product.findMany({
-      orderBy: { id: 'desc' }
-    });
-
-    activeBanners = await prisma.banner.findMany({
-      where: {
-        isActive: true,
-        pageSection: 'products_top'
-      }
-    });
+    // Run database queries in parallel
+    [products, activeBanners] = await Promise.all([
+      prisma.product.findMany({
+        orderBy: { id: 'desc' }
+      }),
+      prisma.banner.findMany({
+        where: {
+          isActive: true,
+          pageSection: 'products_top'
+        }
+      })
+    ]);
   } catch (error) {
     console.error("Products page error:", error);
     errorState = error;

@@ -7,7 +7,7 @@ import DistributorCTA from "@/components/home/DistributorCTA";
 import { prisma } from "@/lib/prisma";
 import { Product, Service, Banner, Ad } from "@prisma/client";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // Revalidate cache every 60 seconds
 
 export default async function Home() {
   let products: Product[] = [];
@@ -17,20 +17,20 @@ export default async function Home() {
   let errorState: any = null;
 
   try {
-    products = await prisma.product.findMany({
-      take: 3,
-      orderBy: { id: 'desc' }
-    });
-
-    services = await prisma.service.findMany();
-
-    activeBanners = await prisma.banner.findMany({
-      where: { isActive: true }
-    });
-
-    activeAds = await prisma.ad.findMany({
-      where: { isActive: true }
-    });
+    // Run all database queries in parallel to significantly reduce wait time
+    [products, services, activeBanners, activeAds] = await Promise.all([
+      prisma.product.findMany({
+        take: 3,
+        orderBy: { id: 'desc' }
+      }),
+      prisma.service.findMany(),
+      prisma.banner.findMany({
+        where: { isActive: true }
+      }),
+      prisma.ad.findMany({
+        where: { isActive: true }
+      })
+    ]);
   } catch (error) {
     console.error("Home page error:", error);
     errorState = error;
@@ -81,7 +81,7 @@ export default async function Home() {
       {homeAdBanner && (
         <div className="container mx-auto px-6 md:px-12 my-8">
           <a href={homeAdBanner.link || "#"} target={homeAdBanner.link ? "_blank" : "_self"}>
-            <img src={homeAdBanner.imageUrl} alt="Advertisement" className="w-full h-auto rounded-3xl shadow-md object-cover max-h-[300px]" />
+            <img src={homeAdBanner.imageUrl} alt="Advertisement" loading="lazy" decoding="async" className="w-full h-auto rounded-3xl shadow-md object-cover max-h-[300px]" />
           </a>
         </div>
       )}

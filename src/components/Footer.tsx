@@ -21,7 +21,7 @@ export default async function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {serializedAds.map((ad: any) => (
               <a key={ad.id} href={ad.link || "#"} target={ad.link ? "_blank" : "_self"} className="block group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <img src={ad.imageUrl} alt={ad.title} className="w-full h-32 object-cover transform group-hover:scale-105 transition-transform duration-500" />
+                <img src={ad.imageUrl} alt={ad.title} loading="lazy" decoding="async" className="w-full h-32 object-cover transform group-hover:scale-105 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                   <span className="text-white font-bold text-sm">{ad.title}</span>
                 </div>

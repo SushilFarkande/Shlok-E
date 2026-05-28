@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import ServicesClient from "./ServicesClient";
 import { Service } from "@prisma/client";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // Cache and revalidate every 60 seconds
 
 export default async function ServicesPage() {
   let services: Service[] = [];
