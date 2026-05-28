@@ -33,11 +33,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16 mt-10">
           {/* Brand Info */}
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-6 group"> 
-              <Image src=""images/logo.png" // put your image inside public folder
-                   alt="Shlok Enterprises Logo" width={30} height={15}
-                   className="object-contain"
-                    />             
+            <Link href="/" className="flex items-center gap-2 mb-6 group">                            
               <span className="font-heading font-bold text-xl tracking-wide">
                 Shlok Enterprises and Manufacturers
               </span>
